@@ -1,6 +1,7 @@
 import flet as ft
 from thread_timer import Timer
 import sqlite3
+import utils.theme_colors as clr
 
 Time = 1 # secs
 TIMES = [1, 2, 5, 10, 30, 60] # secs
@@ -12,18 +13,6 @@ cr.execute('CREATE TABLE IF NOT EXISTS history (clicks integer, cps integer, tim
 cn.commit()
 
 def init_clicker(page: ft.Page):
-    page.window_height, page.window_width = 400, 400
-    page.window_resizable = False
-    page.window_maximizable = False
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    page.horizontal_alignment = ft.MainAxisAlignment.CENTER
-    page.theme = ft.Theme(
-        color_scheme=ft.ColorScheme(
-            primary=ft.colors.GREEN,
-            primary_container=ft.colors.GREEN_200
-        )
-    )
-
     def on_keyboard(e: ft.KeyboardEvent):
         if e.key == ' ':
             start_func()
@@ -61,7 +50,7 @@ def init_clicker(page: ft.Page):
     page.appbar = ft.AppBar(
         title=ft.Text('Click test'),
         center_title=False,
-        bgcolor=ft.colors.GREEN_100,
+        bgcolor=clr.appbar(page),
         actions=[
             ft.PopupMenuButton(
                 items=get_items_for_appbar()

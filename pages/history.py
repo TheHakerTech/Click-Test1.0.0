@@ -1,11 +1,12 @@
 import flet as ft
 import sqlite3
+import utils.theme_colors as clr
 
 def init_history(page: ft.Page):
     page.appbar = ft.AppBar(
         title=ft.Text('Click test'),
         center_title=False,
-        bgcolor=ft.colors.GREEN_100,
+        bgcolor=clr.appbar(page),
     )
 
     def get_history():
