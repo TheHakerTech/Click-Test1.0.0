@@ -43,6 +43,9 @@ def main(page: ft.Page):
     page.update()
 
     init_clicker(page)
+    page.window_center()
+
     page.update()
 
-ft.app(main)
+if __name__ == '__main__':
+    ft.app(main)

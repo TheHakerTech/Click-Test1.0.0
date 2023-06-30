@@ -1,11 +1,17 @@
 import flet as ft
 from thread_timer import Timer
+import sqlite3
 
 Time = 1 # secs
 TIMES = [1, 2, 5, 10, 30, 60] # secs
 
-def init_clicker(page: ft.Page):
+cn = sqlite3.connect('history.db')
+cr = cn.cursor()
 
+cr.execute('CREATE TABLE IF NOT EXISTS history (clicks integer, cps integer, time integer)')
+cn.commit()
+
+def init_clicker(page: ft.Page):
     page.window_height, page.window_width = 400, 400
     page.window_resizable = False
     page.window_maximizable = False
@@ -91,6 +97,12 @@ def init_clicker(page: ft.Page):
         page.dialog.open = True
         page.update()
 
+        cn = sqlite3.connect('history.db')
+        cr = cn.cursor()
+
+        cr.execute(f'INSERT INTO history VALUES ({start_button.data}, {cps}, {Time})')
+        cn.commit()
+
     def click(e=None):
         start_button.data += 1
         count_text.value = f'Клики: {start_button.data}'
@@ -113,5 +125,4 @@ def init_clicker(page: ft.Page):
     timer = Timer(timer_text, Time, end)
     start_button = ft.FilledButton('Старт', width=300, height=100, on_click=start_func)
 
-    page.window_center()
     page.add(count_text, timer_text, start_button)
