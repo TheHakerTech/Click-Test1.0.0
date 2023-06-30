@@ -28,6 +28,9 @@ def init_settings(page: ft.Page):
             page.theme_mode = ft.ThemeMode.LIGHT
         else:
             page.theme_mode = ft.ThemeMode.DARK
+        light_theme.label = (
+            "Светлая тема" if page.theme_mode == ft.ThemeMode.LIGHT else "Темная тема"
+        )
 
     def change_settings(e=None):
         global data

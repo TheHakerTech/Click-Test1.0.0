@@ -1,1 +1,6 @@
+// Default settings is
+//
+// history_paused = false
+// light_theme = true
+
 {"history_paused": false, "light_theme": true}
