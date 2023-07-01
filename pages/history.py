@@ -30,11 +30,13 @@ def init_history(page: ft.Page):
             ]
         ))
 
-    page.add(ft.DataTable(
+    table = ft.DataTable(
         columns=[
             ft.DataColumn(ft.Text('Клики'), numeric=True),
             ft.DataColumn(ft.Text('КПС'), numeric=True),
             ft.DataColumn(ft.Text('Время'), numeric=True)
         ],
         rows=datarows
-    ))
+    )
+    lv = ft.ListView([table], expand=True)
+    page.add(lv)

@@ -25,7 +25,8 @@ def main(page: ft.Page):
             ft.NavigationDestination(icon=ft.icons.MOUSE_OUTLINED, selected_icon=ft.icons.MOUSE, label='Click'),
             ft.NavigationDestination(icon=ft.icons.HISTORY, label='History'),
             ft.NavigationDestination(icon=ft.icons.SETTINGS, label='Settings')
-        ]
+        ],
+        selected_index=0
     )
     page.window_height, page.window_width = 400, 400
     page.window_resizable = False
@@ -66,6 +67,13 @@ def main(page: ft.Page):
 
     init_clicker(page)
     page.window_center()
+
+    # def on_keyboard(e: ft.KeyboardEvent):
+    #     if e.key == 'Arrow Right':
+    #         page.navigation_bar.selected_index += 1
+    #         page.update()
+
+    # page.on_keyboard_event = on_keyboard
 
     page.update()
 

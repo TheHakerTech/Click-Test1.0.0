@@ -13,12 +13,6 @@ cr.execute('CREATE TABLE IF NOT EXISTS history (clicks integer, cps integer, tim
 cn.commit()
 
 def init_clicker(page: ft.Page):
-    def on_keyboard(e: ft.KeyboardEvent):
-        if e.key == ' ':
-            start_func()
-
-    page.on_keyboard_event = on_keyboard
-
     def reset(e=None):
         start_button.text = 'Старт'
         start_button.on_click = start_func
