@@ -1,3 +1,5 @@
 __pycache__
 test.py
 clicks.db
+*.pyc
+modules/__pycache__/*.pyc
