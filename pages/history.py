@@ -21,7 +21,7 @@ def init_history(page: ft.Page):
 
     datarows = []
 
-    for clicks, cps, time in rows:
+    for clicks, cps, time in rows[::-1]:
         datarows.append(ft.DataRow(
             cells=[
                 ft.DataCell(ft.Text(clicks)),
@@ -33,10 +33,10 @@ def init_history(page: ft.Page):
     table = ft.DataTable(
         columns=[
             ft.DataColumn(ft.Text('Клики'), numeric=True),
-            ft.DataColumn(ft.Text('КПС'), numeric=True),
+            ft.DataColumn(ft.Text('Средний КПС'), numeric=True),
             ft.DataColumn(ft.Text('Время'), numeric=True)
         ],
         rows=datarows
     )
-    lv = ft.ListView([table], expand=True)
+    lv = ft.ListView([table], expand=True, spacing=10)
     page.add(lv)
