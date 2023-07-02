@@ -1,7 +1,8 @@
 import flet as ft
 from pages.clicker import init_clicker
 from pages.history import init_history
-from pages.settings import init_settings, __loadSettings
+from pages.settings import init_settings
+import utils.settings_setter as wwsettings
 
 def main(page: ft.Page):
     def change(e: ft.ControlEvent):
@@ -28,7 +29,7 @@ def main(page: ft.Page):
         ],
         selected_index=0
     )
-    page.window_height, page.window_width = 400, 400
+    page.window_height, page.window_width = 800, 600
     page.window_resizable = False
     page.window_maximizable = False
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -58,14 +59,13 @@ def main(page: ft.Page):
     # call the did_mount() once manually if you mess up the order of page.update()
     # page.navigation_bar.did_mount()
 
-    if __loadSettings()['light_theme']:
-            page.theme_mode = ft.ThemeMode.LIGHT
+    if wwsettings.loadSettings()['light_theme']:
+        page.theme_mode = ft.ThemeMode.LIGHT
     else:
         page.theme_mode = ft.ThemeMode.DARK
 
     page.update()
 
-    init_clicker(page)
     page.window_center()
 
     # def on_keyboard(e: ft.KeyboardEvent):
